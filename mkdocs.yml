@@ -1,0 +1,50 @@
+site_name: StoryVault Documentation
+theme:
+  name: material
+
+nav:
+  - Введение:
+      - Обзор проекта: introduction/overview.md
+      - Цели проекта: introduction/goals.md
+      - Глоссарий: introduction/glossary.md
+
+  - Архитектура:
+      - Общая архитектура: architecture/architecture-overview.md
+      - Слои проекта: architecture/layers.md
+      - Структура директорий: architecture/directory-structure.md
+      - Жизненный цикл запроса: architecture/request-lifecycle.md
+
+  - Домен:
+      - Сущность Message: domain/message.md
+      - Сервисы: domain/services.md
+      - События: domain/events.md
+
+  - База данных:
+      - Общая схема: database/schema.md
+      - Миграции: database/migrations.md
+      - Soft Delete: database/soft-delete.md
+
+  - HTTP:
+      - Маршруты: http/routes.md
+      - Контроллеры: http/controllers.md
+      - Валидация: http/validation.md
+      - CSRF: http/csrf.md
+
+  - Безопасность:
+      - Капча: security/captcha.md
+      - Ограничения по IP и rate limits: security/rate-limits.md
+      - Токены: security/tokens.md
+
+  - UI:
+      - Структура фронтенда: ui/frontend-structure.md
+      - Формы: ui/forms.md
+      - Bootstrap: ui/bootstrap.md
+
+  - Разработка:
+      - Локальная установка: development/local-setup.md
+      - Конфигурация окружения: development/env-config.md
+      - Стиль кода: development/coding-style.md
+      - Git Flow: development/git-flow.md
+
+  - Деплой:
+      - GitHub Pages: deployment/github-pages.md
