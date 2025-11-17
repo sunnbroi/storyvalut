@@ -9,12 +9,6 @@ if (file_exists(__DIR__ . '/db-local.php')) {
     );
 }
 
-return [
-    'components' => [
-        'db' => $db,
-        // другие компоненты…
-    ],    
-];
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -54,14 +48,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            '' => 'site/index',
+            'POST message'          => 'message/create',   // POST /message
+            'GET message/edit'      => 'message/edit',     // GET  /message/edit?token=...
+            'POST message/update'   => 'message/update',   // POST /message/update?token=...
+            'GET message/delete'    => 'message/delete',   // GET  /message/delete?token=...
+            'POST message/destroy'  => 'message/destroy',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

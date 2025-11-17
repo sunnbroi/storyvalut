@@ -2,7 +2,12 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-
+if (file_exists(__DIR__ . '/db-local.php')) {
+    $db = array_merge(
+        $db,
+        require __DIR__ . '/db-local.php'
+    );
+}
 $config = [
     'id' => 'basic-console',
     'basePath' => dirname(__DIR__),
