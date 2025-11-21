@@ -37,7 +37,6 @@ class Message extends ActiveRecord
      */
     public function getMaskedIp(): string
     {
-        // Простейшая маскировка IPv4
         if (strpos($this->ip, '.') !== false) {
             $parts = explode('.', $this->ip);
             if (count($parts) === 4) {
@@ -46,8 +45,6 @@ class Message extends ActiveRecord
                 return implode('.', $parts);
             }
         }
-
-        // Для IPv6 или странных значений — просто возвращаем как есть
         return $this->ip;
     }
 
@@ -59,9 +56,6 @@ class Message extends ActiveRecord
         return Yii::$app->formatter->asRelativeTime($this->created_at);
     }
 
-    /**
-     * Количество постов с этого IP (по умолчанию считаем только не удалённые).
-     */
     public function getAuthorPostCountByIp(): int
     {
         return static::find()
@@ -70,9 +64,6 @@ class Message extends ActiveRecord
             ->count();
     }
 
-    /**
-     * Удобный метод для soft-delete из сервиса/репозитория.
-     */
     public function softDelete(): bool
     {
         /** @var SoftDeleteBehavior $behavior */
