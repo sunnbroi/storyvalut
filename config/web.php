@@ -71,7 +71,6 @@ $config = [
         \app\repositories\MessageRepository::class,     
 ],
 ],
-
     'params' => $params,
 ];
 
