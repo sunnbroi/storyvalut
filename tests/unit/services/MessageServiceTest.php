@@ -24,7 +24,7 @@ class MessageServiceTest extends Unit
         $this->repository = $this->createMock(MessageRepositoryInterface::class);
         $this->service = new MessageService($this->repository);
     }
-
+    
     private function createMessageWithCreatedAt(int $timestamp): Message
     {
         $message = new Message();
