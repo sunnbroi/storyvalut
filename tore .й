@@ -1,0 +1,41 @@
+[33mcommit a5df270f4ef2deee40fa9dc83085fddd352d453b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/message-entity[m[33m, [m[1;31morigin/feature/message-entity[m[33m)[m
+Author: Alex <sunnbroi@gmail.com>
+Date:   Thu Dec 4 16:11:10 2025 +0300
+
+    test: add helpers for create Message and MessageForm
+
+[33mcommit 77e8477d48455cc53bd167f811794fb63eeefa7d[m
+Author: Alex <sunnbroi@gmail.com>
+Date:   Thu Dec 4 15:56:17 2025 +0300
+
+    test: add MessageServiceTest skeleton
+
+[33mcommit 88351d3acfad29f251dbdeaaf32fe9b105aa0d8e[m
+Author: Alex <kochoryan2000.jh@gmail.com>
+Date:   Wed Nov 26 11:32:22 2025 +0300
+
+    feat: added message service
+
+[33mcommit dbdc43d5a159d5fe2341d5b6763c7e4190cd2eab[m
+Author: Alex <kochoryan2000.jh@gmail.com>
+Date:   Fri Nov 21 20:28:34 2025 +0300
+
+    feat: added message repository
+
+[33mcommit 2dd7c542ffd406c0be702e68f5dcaabd9e736767[m
+Author: Alex <kochoryan2000.jh@gmail.com>
+Date:   Mon Nov 17 12:05:15 2025 +0300
+
+    docs: create site docs architectory
+
+[33mcommit 93aa28cc81e247d2e39e4443e015da4972e57c5e[m
+Author: Alex <kochoryan2000.jh@gmail.com>
+Date:   Mon Nov 17 10:02:30 2025 +0300
+
+    feat: created Message domain entity (model, migration)
+
+[33mcommit 3c1d0b9fa5b5c4d44b200f0c9e078620671d54de[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Alex <kochoryan2000.jh@gmail.com>
+Date:   Thu Nov 13 13:33:05 2025 +0300
+
+    feat:initial project setup
