@@ -68,8 +68,10 @@ $config = [
             fn () => new \app\components\captcha\CloudflareTurnstileVerifier(
     $params['turnstile']['secretKey']),
     \app\repositories\MessageRepositoryInterface::class =>
-        \app\repositories\MessageRepository::class,     
-],
+        \app\repositories\MessageRepository::class,   
+        \app\Domain\Message\Repository\MessageRepositoryInterface::class =>
+            \app\Infrastructure\Message\Persistence\MessageRepository::class,  
+        ],
 ],
     'params' => $params,
 ];
