@@ -11,8 +11,8 @@ class Message
     private string $email;
     private string $message;
     private string $ip;
-    private int $createdAt; 
-    private ?int $deletedAt;
+    private int $createdAt;     // unix timestamp
+    private ?int $deletedAt;    // null = not deleted
     private string $editToken;
     private string $deleteToken;
     private ?string $imagePath; // опционально
@@ -40,6 +40,11 @@ class Message
         $this->deleteToken = $deleteToken;
         $this->imagePath = $imagePath;
     }
+
+    // -----------------------------
+    //       Фабрика создания
+    // -----------------------------
+
     public static function createNew(
         string $author,
         string $email,
@@ -47,7 +52,8 @@ class Message
         string $ip,
         string $editToken,
         string $deleteToken,
-        ?string $imagePath = null
+        ?string $imagePath = null,
+        ?int $createdAtUnix = null
     ): self {
         return new self(
             null,
@@ -55,13 +61,18 @@ class Message
             $email,
             $message,
             $ip,
-            time(),
+            $createdAtUnix ?? time(),
             null,
             $editToken,
             $deleteToken,
             $imagePath
         );
     }
+
+    // -----------------------------
+    //     Доменные правила
+    // -----------------------------
+
     public function canEdit(DateTimeImmutable $now): bool
     {
         // можно редактировать 12 часов после создания
@@ -99,6 +110,11 @@ class Message
 
         $this->deletedAt = $now->getTimestamp();
     }
+
+    // -----------------------------
+    //       Геттеры для DTO
+    // -----------------------------
+
     public function getId(): ?int          { return $this->id; }
     public function getAuthor(): string    { return $this->author; }
     public function getEmail(): string     { return $this->email; }
@@ -109,6 +125,11 @@ class Message
     public function getEditToken(): string { return $this->editToken; }
     public function getDeleteToken(): string { return $this->deleteToken; }
     public function getImagePath(): ?string { return $this->imagePath; }
+
+    // -----------------------------
+    //      Сеттер id (после save)
+    // -----------------------------
+
     public function setId(int $id): void
     {
         $this->id = $id;
