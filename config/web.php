@@ -66,11 +66,21 @@ $config = [
     'definitions' => [
         \app\components\captcha\CaptchaVerifierInterface::class =>
             fn () => new \app\components\captcha\CloudflareTurnstileVerifier(
-    $params['turnstile']['secretKey']),
-    \app\repositories\MessageRepositoryInterface::class =>
-        \app\repositories\MessageRepository::class,   
+        $params['turnstile']['secretKey']),
+        \app\repositories\MessageRepositoryInterface::class =>
+            \app\repositories\MessageRepository::class,
+
         \app\Domain\Message\Repository\MessageRepositoryInterface::class =>
-            \app\Infrastructure\Message\Persistence\MessageRepository::class,  
+            \app\Infrastructure\Message\Persistence\MessageRepository::class,
+
+        \app\Domain\Message\Service\RateLimitPolicyInterface::class =>
+            \app\Infrastructure\Message\Service\ConfigurableRateLimitPolicy::class,
+
+        \app\Domain\Message\Service\IpMaskerInterface::class =>
+            \app\Domain\Message\Service\IpMasker::class,
+
+        \app\Domain\Message\Service\ContentSanitizerInterface::class =>
+            \app\Infrastructure\Message\Service\HtmlPurifierContentSanitizer::class,
         ],
 ],
     'params' => $params,

@@ -59,11 +59,28 @@ class MessageRepository implements MessageRepositoryInterface
             ->orderBy(['created_at' => SORT_DESC])
             ->one();
 
-        if ($ar === null) {
-            return null;
-        }
+        return $ar ? $this->mapToDomain($ar) : null;
+    }
+        public function findLastByEmail(string $email): ?DomainMessage
+    {
+        $ar = MessageAR::find()
+            ->andWhere(['email' => $email])
+            ->andWhere(['deleted_at' => null])
+            ->orderBy(['created_at' => SORT_DESC])
+            ->one();
 
-        return $this->mapToDomain($ar);
+        return $ar ? $this->mapToDomain($ar) : null;
+    }
+
+    public function findLastByIpOrEmail(string $ip, string $email): ?DomainMessage
+    {
+        $ar = MessageAR::find()
+            ->andWhere(['deleted_at' => null])
+            ->andWhere(['or', ['ip' => $ip], ['email' => $email]])
+            ->orderBy(['created_at' => SORT_DESC])
+            ->one();
+
+        return $ar ? $this->mapToDomain($ar) : null;
     }
 
     public function countByIp(string $ip): int
@@ -73,14 +90,6 @@ class MessageRepository implements MessageRepositoryInterface
             ->andWhere(['deleted_at' => null])
             ->count();
     }
-
-    // -----------------------------------------
-    //               Маппинг
-    // -----------------------------------------
-
-    /**
-     * Преобразует AR-модель в доменную сущность.
-     */
     private function mapToDomain(MessageAR $ar): DomainMessage
     {
         return new DomainMessage(
@@ -96,13 +105,6 @@ class MessageRepository implements MessageRepositoryInterface
             $ar->image_path ?? null
         );
     }
-
-    /**
-     * Преобразует доменную сущность в AR-модель.
-     *
-     * Если id есть — загружает существующую запись.
-     * Если id нет — создаёт новый AR.
-     */
     private function mapToAR(DomainMessage $message): MessageAR
     {
         if ($message->getId() !== null) {
