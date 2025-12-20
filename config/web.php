@@ -63,10 +63,14 @@ $config = [
     ],
 
     'container' => [
+'container' => [
     'definitions' => [
-        \app\components\captcha\CaptchaVerifierInterface::class =>
-            fn () => new \app\components\captcha\CloudflareTurnstileVerifier(
-        $params['turnstile']['secretKey']),
+    ],
+    'singletons' => [
+        
+        \app\components\captcha\CaptchaVerifierInterface::class => fn () =>
+            new \app\components\captcha\CloudflareTurnstileVerifier($params['turnstile']['secretKey']),
+
         \app\repositories\MessageRepositoryInterface::class =>
             \app\repositories\MessageRepository::class,
 
@@ -81,7 +85,18 @@ $config = [
 
         \app\Domain\Message\Service\ContentSanitizerInterface::class =>
             \app\Infrastructure\Message\Service\HtmlPurifierContentSanitizer::class,
-        ],
+
+        \app\Application\Message\UseCase\CreateMessageUseCaseInterface::class =>
+            \app\Application\Message\UseCase\CreateMessageHandler::class,
+
+        \app\Application\Message\UseCase\EditMessageUseCaseInterface::class =>
+            \app\Application\Message\UseCase\EditMessageHandler::class,
+
+        \app\Application\Message\UseCase\DeleteMessageUseCaseInterface::class =>
+            \app\Application\Message\UseCase\DeleteMessageHandler::class,
+    ],
+],
+
 ],
     'params' => $params,
 ];
